@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 const reviewSchema = yup.object({
     title: yup.string()
-        .required()
+        .required() 
         .min(4),
     body: yup.string()
         .required()
@@ -37,7 +37,9 @@ export default function ReviewForm({ addReview }) {
                             placeholder='Review title'
                             onChangeText={props.handleChange('title')}
                             value={props.values.title}
+                            onBlur={props.handleBlur('title')}
                         />
+                        <Text style={globalStyles.errorText}>{ props.touched.title && props.errors.title }</Text>
 
                         <TextInput
                             multiline
@@ -45,7 +47,9 @@ export default function ReviewForm({ addReview }) {
                             placeholder='Review body'
                             onChangeText={props.handleChange('body')}
                             value={props.values.body}
+                            onBlur={props.handleBlur('body')}
                         />
+                        <Text style={globalStyles.errorText}>{ props.touched.body && props.errors.body }</Text>
 
                         <TextInput
                             keyboardType='numeric'
@@ -53,7 +57,9 @@ export default function ReviewForm({ addReview }) {
                             placeholder='Rating (1-5)'
                             onChangeText={props.handleChange('rating')}
                             value={props.values.rating}
+                            onBlur={props.handleBlur('rating')}
                         />
+                        <Text style={globalStyles.errorText}>{ props.touched.rating && props.errors.rating }</Text>
 
                         <Button title='Submit' color='maroon' onPress={props.handleSubmit} />
                     </View>
